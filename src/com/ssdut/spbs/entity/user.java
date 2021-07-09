@@ -3,19 +3,19 @@ import java.sql.Time;
 import java.util.*;
 public class user {
 
-    private int userID;
-    private String userName;
-    private String userPwd;
-    private String userPhone;
-    private int useTimes;
+    private int userID;//用户ID
+    private String userName;//用户名
+    private String userPwd;//用户密码
+    private String userPhone;//用户电话
+    private int useTimes;//使用次数
 
-    private Time useTimeLong;
-    private int useTimesLocA;
-    private int UseTimesLocB;
-    private int useTimesLocC;
-    private int useTimesLocD;
-    private double userBalance;
-    private double userDiscount;
+    private Time useTimeLong;//使用时间长度
+    private int useTimesLocA;//在地点A使用次数
+    private int UseTimesLocB;//在地点B使用次数
+    private int useTimesLocC;//在地点C使用次数
+    private int useTimesLocD;//在地点D使用次数
+    private double userBalance;//用户余额
+    private double userDiscount;//用户折扣
 
     public int getUseTimes() {
         return useTimes;

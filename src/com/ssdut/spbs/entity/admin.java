@@ -1,9 +1,9 @@
 package com.ssdut.spbs.entity;
 
 public class admin {
-    private int adminID;
-    private String adminName;
-    private String adminPwd;
+    private int adminID;//管理员ID
+    private String adminName;//管理员名字
+    private String adminPwd;//管理员密码
 
     public int getAdminID() {
         return adminID;

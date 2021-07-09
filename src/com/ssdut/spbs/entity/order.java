@@ -2,15 +2,15 @@ package com.ssdut.spbs.entity;
 import java.util.*;
 public class order {
 
-      private int orderID;
-      private int orderUserID;
-      private String  orderLendLocID;
-      private int orderPbID;
-      private Date orderCreateTime;
-      private int orderHasFinished;
-      private String orderRevertLocID;
-      private Date orderFinishTime;
-      private double orderCost;
+      private int orderID;//订单ID
+      private int orderUserID;//订单创建者ID
+      private String  orderLendLocID;//充电宝借出地点
+      private int orderPbID;//订单使用的充电宝ID
+      private Date orderCreateTime;//订单创建时间
+      private int orderHasFinished;//订单是否完成
+      private String orderRevertLocID;//还充电宝地点
+      private Date orderFinishTime;//订单结束时间
+      private double orderCost;//订单花费
 
       public int getOrderID() {
             return orderID;

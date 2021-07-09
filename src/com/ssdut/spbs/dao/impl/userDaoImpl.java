@@ -16,7 +16,8 @@ public class userDaoImpl implements userDao {
         ResultSet rs = null;
         user user1=null;
         try {
-            conn = JdbcUtil.getConnection();
+            conn = JdbcUtil.getConnection(); //连接数据库
+            //写出sql语句，将可变变量，用？做替代，进行预编译
             st = conn.prepareStatement("select * from user where `userName`=? and `userPwd`=?" );
             st.setString(1, uname);
             st.setString(2, upass);
@@ -24,6 +25,7 @@ public class userDaoImpl implements userDao {
             rs=st.executeQuery();
             while(rs.next()) {
                 user1=new user();
+                //获取查询用户全部信息
                 user1.setUserID(rs.getInt("userID"));
                 user1.setUserName(rs.getString("userName"));
                 user1.setUserPwd(rs.getString("userPwd"));
@@ -43,7 +45,7 @@ public class userDaoImpl implements userDao {
         } finally {
             JdbcUtil.closeAll(rs, st, conn);
         }
-        return user1;
+        return user1;//返回查询获得的用户对象
     }
 
     @Override

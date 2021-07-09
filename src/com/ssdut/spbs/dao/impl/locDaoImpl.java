@@ -20,11 +20,12 @@ public class locDaoImpl implements locDao{
         List <loc> list=new ArrayList<loc>();
         loc loc1=null;
         try {
-            conn = JdbcUtil.getConnection();
+            conn = JdbcUtil.getConnection();//连接数据库
+            //写出sql语句，将可变变量，用？做替代，进行预编译
             //st = conn.prepareStatement("select * from topic");
             st=conn.prepareStatement("select * from loc");
             rs=st.executeQuery();
-            while(rs.next()) {
+            while(rs.next()) {//执行语句，遍历查询结果
                 loc1=new loc();
                 loc1.setLocID(rs.getString("locID"));
                 loc1.setLocInfo(rs.getString("locInfo"));
