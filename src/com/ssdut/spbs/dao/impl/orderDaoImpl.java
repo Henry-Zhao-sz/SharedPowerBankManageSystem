@@ -48,6 +48,8 @@ public class orderDaoImpl implements orderDao {
         }
         return order1;//返回查询出的结果对象
     }
+
+
     @Override
     public List<order> queryByUserID(int orderUserID)//查询单个用户所有订单
     {
@@ -86,6 +88,37 @@ public class orderDaoImpl implements orderDao {
         }
         return list;//返回该用户的所有的订单的列表
     }
+
+
+    @Override
+    public double querySumCostByUserID(int orderUserID)//查询用户所花费总金额
+    {
+        // TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        Double Cost=0.0;
+        try {
+            conn = JdbcUtil.getConnection();//连接数据库
+            //写出sql语句，将可变变量，用？做替代，进行预编译
+            st = conn.prepareStatement("select sum(orderCost) from order where `orderUserID=? group by orderUserID");
+            //将参数进行替换
+            st.setInt(1, orderUserID);
+            //System.out.println(st.toString());
+            rs=st.executeQuery();//执行语句
+            while(rs.next()) {//遍历查询结果
+                Cost = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);//关闭连接
+        }
+        return Cost;//返回该用户的所有的订单的列表
+    }
+
+    }
+
 }
 
 
