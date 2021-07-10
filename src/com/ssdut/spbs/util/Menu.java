@@ -165,7 +165,7 @@ public class Menu {
                 List<loc> list = lsi.showAllLoc();
                 System.out.println("站点编号\t"+"站点信息\t\t\t"+"可用数量\t"+"总计数量\t"+"最大容量\t"+"借出次数");
                 for (loc loc1:list) {
-                    System.out.println(loc1.getLocID()+"\t   "+loc1.getLocInfo()+"\t  "+loc1.getAvailNum()+"\t\t"+loc1.getTotalNum()+"\t\t"+loc1.getMaxVolume()+"\t\t"+loc1.getLendTime());
+                    System.out.println(loc1.getLocID()+"\t    "+loc1.getLocInfo()+"\t  "+loc1.getAvailNum()+"\t\t"+loc1.getTotalNum()+"\t\t"+loc1.getMaxVolume()+"\t\t"+loc1.getLendTime());
                 }
                 showlocManager();
                 break;

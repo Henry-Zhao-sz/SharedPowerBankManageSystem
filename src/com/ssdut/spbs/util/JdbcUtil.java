@@ -11,7 +11,7 @@ public final class JdbcUtil {
         private static String DRIVER_CLASS = "com.mysql.jdbc.Driver";
         private static String URL="jdbc:mysql://127.0.0.1:3306/spbs?useSSL=false";
         private static String USER = "root";
-        private static String PASSWORD = "Jty1250894237";//设置数据库相关参数
+        private static String PASSWORD = "root";//设置数据库相关参数
         private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
         static {
             try {
