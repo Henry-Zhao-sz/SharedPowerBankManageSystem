@@ -176,5 +176,132 @@ public class userDaoImpl implements userDao {
         return affectedRow;
     }
 
+    @Override
+    public int changeTheMessage(String telephone, String name, String keyword){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userPhone=?");
+            st.setString(1,telephone);
+            rs=st.executeQuery();
+            if(rs.next()){
+                st=conn.prepareStatement("update user set userName=?, userPwd=? where userPhone=?");
+                st.setString(1,name);
+                st.setString(2,keyword);
+                st.setString(3,telephone);
+                match=st.executeUpdate();
+                conn.commit();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int returnMatch(String telephone){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userPhone=?");
+            st.setString(1,telephone);
+            rs=st.executeQuery();
+            while(rs.next()) {
+                match = rs.getRow();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int top_Up(int money, String name, String key){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userName=? and userPwd=?");
+            st.setString(1,name);
+            st.setString(2,key);
+            rs=st.executeQuery();
+            if(rs.next()){
+                st=conn.prepareStatement("update user set userBalance=userBalance+?");
+                st.setInt(1,money);
+                match=st.executeUpdate();
+                conn.commit();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int topThe_Up(String name, String key){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userName=? and userPwd=?");
+            st.setString(1,name);
+            st.setString(2,key);
+            rs=st.executeQuery();
+            while(rs.next()) {
+                match = rs.getRow();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+
 }
 

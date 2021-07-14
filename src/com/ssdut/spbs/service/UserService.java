@@ -11,4 +11,12 @@ public interface UserService {
 
     int removeSpeUser(int uid);
 
+    int changeMessage(String telephone, String name, String keyword);
+
+    int returnTheMatch(String telephone);
+
+    int topUp(int money, String name, String key);
+
+    int topTheUp(String name, String key);
+
 }
