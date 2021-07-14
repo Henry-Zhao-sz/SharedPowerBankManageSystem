@@ -27,6 +27,13 @@ public interface userDao {
 
     int deleteSpeUser(int uid);
 
+    int changeTheMessage(String telephone, String name, String keyword);
+
+    int returnMatch(String telephone);
+
+    int top_Up(int money, String name, String key);
+
+    int topThe_Up(String name, String key);
 
 
 }
