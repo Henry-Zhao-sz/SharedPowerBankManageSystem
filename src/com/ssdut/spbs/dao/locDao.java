@@ -14,4 +14,11 @@ public interface locDao {
 
     int saveLoc(loc loc1);
 
+    /*输入站点ID
+    查询当前站点可用的充电宝
+    返回充电宝列表
+     */
+
+    List<powerbank> showPowerBank(String locID);
+
 }

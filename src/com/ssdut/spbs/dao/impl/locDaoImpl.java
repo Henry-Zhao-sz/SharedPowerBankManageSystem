@@ -133,4 +133,42 @@ public class locDaoImpl implements locDao{
     }
 
 
+
+    @Override
+    public List<powerbank> showPowerBank(String locID)
+    {
+        // TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List <powerbank> list=new ArrayList<powerbank>();//创建充电宝列表
+        powerbank pw=null;
+        try {
+            conn = JdbcUtil.getConnection();
+            //st = conn.prepareStatement("select * from topic");
+            st=conn.prepareStatement("select * from powerbank where pbLoc like ?");
+            st.setString(1,locID);//查询对应位置的所有充电宝
+            rs=st.executeQuery();
+            while(rs.next()) {
+                pw=new powerbank();
+                pw.setPbID(rs.getInt("pbID"));
+                pw.setBlState(rs.getInt("blState"));
+                pw.setRestPower(rs.getInt("restPower"));
+                pw.setUseTimeLong(rs.getTime("useTimeLong"));
+                pw.setPbLoc(rs.getString("pbLoc"));
+                pw.setHealthState(rs.getDouble("HealthState"));
+                list.add(pw);//列表加入充电宝
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return list;//返回列表
+    }
+
+
+
+
+
 }

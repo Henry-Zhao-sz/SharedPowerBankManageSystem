@@ -11,4 +11,6 @@ public interface UserService {
 
     int removeSpeUser(int uid);
 
+    boolean createOreder(int uid);
+
 }

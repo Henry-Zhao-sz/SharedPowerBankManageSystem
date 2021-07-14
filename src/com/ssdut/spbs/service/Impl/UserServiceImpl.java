@@ -28,4 +28,11 @@ public class UserServiceImpl implements UserService {
           return udi.deleteSpeUser(uid);
     }
 
+    @Override
+    public boolean createOreder(int uid)
+    {
+
+    }
+
+
 }
