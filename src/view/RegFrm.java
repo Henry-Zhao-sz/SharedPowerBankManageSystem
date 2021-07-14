@@ -190,8 +190,15 @@ public class RegFrm extends JFrame {
 			JOptionPane.showMessageDialog(null, "电话不能为空");
 			return;
 		}
-	    
-	    boolean bl=bsi.register(user1);
+	    if(bsi.checkRegValid(Integer.parseInt(userid))==1) {
+	    	JOptionPane.showMessageDialog(null, "用户编号与已有用户重复，请重新输入");
+	    	IDtext.setText("");
+	    	nameText.setText("");
+	    	PwdText.setText("");
+	    	phoneText.setText("");
+	    }
+	    else {
+	    	boolean bl=bsi.register(user1);
 	    if(bl==true) {   //注册成功
 	    	JOptionPane.showMessageDialog(null, "注册成功");
 	    	try {
@@ -205,5 +212,7 @@ public class RegFrm extends JFrame {
 	    } else {
 	    	JOptionPane.showMessageDialog(null, "注册失败");
 	    }
+	    }
+	    
 	}
 }

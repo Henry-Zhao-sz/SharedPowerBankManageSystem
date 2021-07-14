@@ -1,5 +1,6 @@
 package com.ssdut.spbs.entity;
 import java.util.*;
+import java.text.SimpleDateFormat;
 public class order {
 
       private int orderID;//订单ID
@@ -49,7 +50,9 @@ public class order {
       }
 
       public void setOrderCreateTime(Date orderCreateTime) {
-            this.orderCreateTime = orderCreateTime;
+    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    	  sdf.format(orderCreateTime);
+    	  this.orderCreateTime = orderCreateTime;
       }
 
       public int getOrderHasFinished() {

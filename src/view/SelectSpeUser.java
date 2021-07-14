@@ -18,6 +18,7 @@ import com.ssdut.spbs.service.Impl.*;
 import com.ssdut.spbs.service.*;
 import com.ssdut.spbs.entity.*;
 import java.util.*;
+import java.text.DecimalFormat;
 
 public class SelectSpeUser extends JInternalFrame {
 	private JTextField userInfoText;
@@ -80,7 +81,8 @@ public class SelectSpeUser extends JInternalFrame {
 					userphoneText.setFont(new Font("宋体",Font.BOLD,12));
 					usertimeText.setText(Integer.toString(user1.getUseTimes()));
 					usertimeText.setFont(new Font("宋体",Font.BOLD,12));
-					userbalanceText.setText(Double.toString(user1.getUserBalance()));
+					DecimalFormat df=new DecimalFormat("#.00");
+					userbalanceText.setText(df.format(user1.getUserBalance()));
 					userbalanceText.setFont(new Font("宋体",Font.BOLD,12));
 					LocAtimeText.setText(Integer.toString(user1.getUseTimesLocA()));
 					LocAtimeText.setFont(new Font("宋体",Font.BOLD,12));

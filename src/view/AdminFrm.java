@@ -140,6 +140,22 @@ public class AdminFrm extends JFrame {
 		});
 		mntmNewMenuItem_6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 15));
 		mnNewMenu_1.add(mntmNewMenuItem_6);
+		
+		JMenu mnNewMenu_2 = new JMenu("管理订单情况");
+		mnNewMenu_2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("查看所有订单");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				AllOrderFrm aof=new AllOrderFrm();
+				aof.setVisible(true);
+				table111.add(aof);
+			}
+		});
+		mntmNewMenuItem_7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_7);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

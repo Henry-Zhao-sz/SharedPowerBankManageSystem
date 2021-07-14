@@ -47,7 +47,7 @@ public class UserFrm extends JFrame {
 	public UserFrm() {
 		setTitle("用户");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 737, 547);
+		setBounds(100, 100, 751, 555);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -94,9 +94,46 @@ public class UserFrm extends JFrame {
 		mntmNewMenuItem_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("管理个人情况");
-		mntmNewMenuItem_2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
-		menuBar.add(mntmNewMenuItem_2);
+		JMenu mnNewMenu_1 = new JMenu("管理个人情况");
+		mnNewMenu_1.setForeground(Color.BLACK);
+		mnNewMenu_1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("修改用户名或密码");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				ChangeUserInfoFrm cuif=new ChangeUserInfoFrm();
+				cuif.setVisible(true);
+				table222.add(cuif);
+			}
+		});
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("查看个人信息");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				SelectSpeUser2 ssu2=new SelectSpeUser2();
+				ssu2.setVisible(true);
+				table222.add(ssu2);
+			}
+		});
+		mntmNewMenuItem_5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_1.add(mntmNewMenuItem_5);
+		mntmNewMenuItem_2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("账户充值");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				UserTopupFrm utf=new UserTopupFrm();
+				utf.setVisible(true);
+				table222.add(utf);
+			}
+		});
+		mntmNewMenuItem_4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_1.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -107,15 +144,12 @@ public class UserFrm extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(table222, GroupLayout.PREFERRED_SIZE, 697, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(table222, GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(table222, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(43, Short.MAX_VALUE))
+				.addComponent(table222, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 		this.setLocationRelativeTo(null);  // 居中显示

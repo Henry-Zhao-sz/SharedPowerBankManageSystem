@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class orderDaoImpl implements orderDao {
 
     @Override
@@ -116,8 +117,44 @@ public class orderDaoImpl implements orderDao {
         }
         return Cost;//返回该用户的所有的订单的列表
     }
-
+    
+    @Override
+    public List<order> selectAllOrder(){
+    	// TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List <order> list=new ArrayList<order>();
+        order order1=null;
+        try {
+            conn = JdbcUtil.getConnection();//连接数据库
+            //写出sql语句，将可变变量，用？做替代，进行预编译
+            //st = conn.prepareStatement("select * from topic");
+            st=conn.prepareStatement("select * from `order`");
+            rs=st.executeQuery();
+            while(rs.next()) {//执行语句，遍历查询结果
+            	order1=new order();
+                order1.setOrderID(rs.getInt("orderID"));
+                order1.setOrderUserID(rs.getInt("orderUserID"));
+                order1.setOrderLendLocID(rs.getString("orderLendLocID"));
+                order1.setOrderPbID(rs.getInt("orderPbID"));
+                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
+                order1.setOrderLendLocID(rs.getString("orderLendLocID"));
+                order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
+                order1.setOrderFinishTime(rs.getDate("orderFinishTime"));
+                order1.setOrderCost(rs.getDouble("orderCost"));
+                list.add(order1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return list;
     }
+    
+}
 
 
 

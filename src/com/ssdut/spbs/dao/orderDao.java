@@ -27,4 +27,10 @@ public interface orderDao {
      * @return 数据表中有一条记录返回一个order对象，否则返回null
      */
     double querySumCostByUserID(int orderUserID);
+    
+    /**
+     * 查询所有订单
+     * @return 返回order表中所有的订单
+     */
+    List<order> selectAllOrder();
 }
