@@ -34,5 +34,10 @@ public interface orderDao {
 
     int CreateOrder(order order1);
 
+    /**
+     * 找到订单编号
+     *
+     */
+    int findOrderNum();
 
 }

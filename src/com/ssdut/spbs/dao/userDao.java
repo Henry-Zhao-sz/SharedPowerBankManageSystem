@@ -13,6 +13,16 @@ public interface userDao {
      * @return 数据表中有一条记录返回一个user对象，否则返回null
      */
     user queryByUnameAndUpass(String uname,String upass);
+
+
+
+
+
+
+
+
+
+
     /**
      * 保存一个用户对象
      * @param user1
@@ -23,6 +33,7 @@ public interface userDao {
 
     List<user> listUser();
 
+    //根据用户ID查询用户信息。
     user listSpeUser(int uid);
 
     int deleteSpeUser(int uid);

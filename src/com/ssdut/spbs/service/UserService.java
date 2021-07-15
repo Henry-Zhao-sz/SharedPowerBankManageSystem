@@ -10,7 +10,7 @@ public interface UserService {
     user showSpeUser(int uid);
 
     int removeSpeUser(int uid);
-
-    boolean createOreder(int uid);
+    //创建订单
+    boolean createOrder(int uid, String lendLocID, int pdID,long orderCreateTime);
 
 }

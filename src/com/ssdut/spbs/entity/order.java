@@ -1,12 +1,11 @@
 package com.ssdut.spbs.entity;
 import java.util.*;
 public class order {
-
-      private int orderID;//订单ID
+      private int orderID;//订单IDpu
       private int orderUserID;//订单创建者ID
       private String  orderLendLocID;//充电宝借出地点
       private int orderPbID;//订单使用的充电宝ID
-      private Date orderCreateTime;//订单创建时间
+      private long orderCreateTime;//订单创建时间
       private int orderHasFinished;//订单是否完成
       private String orderRevertLocID;//还充电宝地点
       private Date orderFinishTime;//订单结束时间
@@ -44,11 +43,11 @@ public class order {
             this.orderPbID = orderPbID;
       }
 
-      public Date getOrderCreateTime() {
+      public long getOrderCreateTime() {
             return orderCreateTime;
       }
 
-      public void setOrderCreateTime(Date orderCreateTime) {
+      public void setOrderCreateTime(long orderCreateTime) {
             this.orderCreateTime = orderCreateTime;
       }
 

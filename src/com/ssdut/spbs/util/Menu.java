@@ -1,9 +1,15 @@
 package com.ssdut.spbs.util;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import com.ssdut.spbs.entity.*;
 import com.ssdut.spbs.service.Impl.*;
 import com.ssdut.spbs.service.*;
+import com.ssdut.spbs.dao.impl.*;
+
+import  java.sql.Date;
+
+
 
 public class Menu {
     static Scanner sc = new Scanner(System.in);
@@ -31,6 +37,7 @@ public class Menu {
                 break;
             case 2:
                 user1 = showcheckLogMenu();
+
                 showUserMenu();// 验证通过进入普通用户菜单
                 break;
             case 3:
@@ -144,8 +151,22 @@ public class Menu {
 
     // 用户主菜单
     public static void showUserMenu() {
-        System.out.println("1.查看站点情况 2.管理个人情况 ......");
-    }
+        System.out.println("1.查看站点情况 2.管理个人情况 3.创建订单");
+        cursor=sc.nextInt();
+        switch (cursor) {
+            case 1:
+            case 2:
+            case 3:
+                System.out.println("请输入用户ID,借出地点，借出充电宝ID,借出时间");
+                int id = sc.nextInt();
+                String l = sc.next();
+                int pid = sc.nextInt();
+                long date =20210715060000l;
+                UserServiceImpl usi =new UserServiceImpl();
+                usi.createOrder(id,l,pid,date);
+        }
+
+    }3
 
 
     public static void showlocManager(){
