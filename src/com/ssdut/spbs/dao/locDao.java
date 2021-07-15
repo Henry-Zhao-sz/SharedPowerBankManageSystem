@@ -12,6 +12,8 @@ public interface locDao {
 
     List<loc> listSpeRegion(String rid);
 
+    String returnLocInfo(String locID);
+
     int saveLoc(loc loc1);
 
 }

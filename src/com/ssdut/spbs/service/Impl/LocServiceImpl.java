@@ -34,4 +34,11 @@ public class LocServiceImpl implements LocService {
         return ldi.saveLoc(loc1)>0;
     }
 
+
+    @Override
+    public String returnThelocInfo(String locID){
+        String thelocInfo= ldi.returnLocInfo(locID);
+        return thelocInfo;
+    }
+
 }
