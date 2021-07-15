@@ -134,6 +134,47 @@ public class UserFrm extends JFrame {
 		});
 		mntmNewMenuItem_4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
 		mnNewMenu_1.add(mntmNewMenuItem_4);
+		
+		JMenu mnNewMenu_2 = new JMenu("查看充电宝情况");
+		mnNewMenu_2.setForeground(new Color(0, 0, 0));
+		mnNewMenu_2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("查看所有充电宝");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				AllPBFrm apf=new AllPBFrm();
+				apf.setVisible(true);
+				table222.add(apf);
+			}
+		});
+		mntmNewMenuItem_6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_6);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("查看指定站点充电宝");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				SelectSpeRegionPB ssrp = new SelectSpeRegionPB();
+				ssrp.setVisible(true);
+				table222.add(ssrp);
+			}
+		});
+		mntmNewMenuItem_7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_7);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("查看指定区域充电宝");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table222.removeAll();
+				SelectSpeRegionPB2 ssr2=new SelectSpeRegionPB2();
+				ssr2.setVisible(true);
+				table222.add(ssr2);
+			}
+		});
+		mntmNewMenuItem_8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_8);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

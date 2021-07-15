@@ -24,7 +24,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select * from order where `orderID`=?" );
+            st = conn.prepareStatement("select * from `order` where `orderID`=?" );
             //将参数进行替换
             st.setInt(1, orderID);
             //System.out.println(st.toString());
@@ -35,11 +35,11 @@ public class orderDaoImpl implements orderDao {
                 order1.setOrderUserID(rs.getInt("orderUserID"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderPbID(rs.getInt("orderPbID"));
-                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderCreateTime(rs.getTimestamp("orderCreateTime"));
                 order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
-                order1.setOrderFinishTime(rs.getDate("orderFinishTime"));
+                order1.setOrderFinishTime(rs.getTimestamp("orderFinishTime"));
                 order1.setOrderCost(rs.getDouble("orderCost"));
             }
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select * from order where `orderUserID=?" );
+            st = conn.prepareStatement("select * from `order` where `orderUserID`=?" );
             //将参数进行替换
             st.setInt(1, orderUserID);
             //System.out.println(st.toString());
@@ -74,11 +74,11 @@ public class orderDaoImpl implements orderDao {
                 order1.setOrderUserID(rs.getInt("orderUserID"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderPbID(rs.getInt("orderPbID"));
-                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderCreateTime(rs.getTimestamp("orderCreateTime"));
                 order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
-                order1.setOrderFinishTime(rs.getDate("orderFinishTime"));
+                order1.setOrderFinishTime(rs.getTimestamp("orderFinishTime"));
                 order1.setOrderCost(rs.getDouble("orderCost"));
                 list.add(order1);
             }
@@ -102,7 +102,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select sum(orderCost) from order where `orderUserID=? group by orderUserID");
+            st = conn.prepareStatement("select sum(orderCost) from `order` where `orderUserID`=? group by `orderUserID`");
             //将参数进行替换
             st.setInt(1, orderUserID);
             //System.out.println(st.toString());
@@ -138,11 +138,11 @@ public class orderDaoImpl implements orderDao {
                 order1.setOrderUserID(rs.getInt("orderUserID"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderPbID(rs.getInt("orderPbID"));
-                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderCreateTime(rs.getTimestamp("orderCreateTime"));
                 order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
-                order1.setOrderFinishTime(rs.getDate("orderFinishTime"));
+                order1.setOrderFinishTime(rs.getTimestamp("orderFinishTime"));
                 order1.setOrderCost(rs.getDouble("orderCost"));
                 list.add(order1);
             }

@@ -11,7 +11,25 @@ public class powerbank {
     private String pbLoc;        //充电宝位置
     private double HealthState;  //电池的健康状态
 
-    public int getPbID() {
+    public powerbank(int pbID, int blState, double restPower, Time useTimeLong, String pbLoc, double healthState) {
+		this.pbID = pbID;
+		this.blState = blState;
+		this.restPower = restPower;
+		this.useTimeLong = useTimeLong;
+		this.pbLoc = pbLoc;
+		HealthState = healthState;
+	}
+
+    public powerbank() {
+    	pbID=200;
+    	blState = 1;
+    	restPower = 100;
+        pbLoc = "A1";
+    	HealthState = 100;
+    	
+    }
+    
+	public int getPbID() {
         return pbID;
     }
 
@@ -36,7 +54,8 @@ public class powerbank {
     }
 
     public Time getUseTimeLong() {
-        return useTimeLong;
+        
+    	return useTimeLong;
     }
 
     public void setUseTimeLong(Time useTimeLong) {

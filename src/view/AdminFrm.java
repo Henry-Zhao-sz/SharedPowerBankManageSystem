@@ -13,8 +13,11 @@ import javax.swing.JMenu;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class AdminFrm extends JFrame {
 
@@ -43,7 +46,7 @@ public class AdminFrm extends JFrame {
 	public AdminFrm() {
 		setTitle("管理员");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 826, 573);
+		setBounds(100, 100, 894, 664);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -156,6 +159,94 @@ public class AdminFrm extends JFrame {
 		});
 		mntmNewMenuItem_7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
 		mnNewMenu_2.add(mntmNewMenuItem_7);
+		
+		JMenuItem mntmNewMenuItem_13 = new JMenuItem("查看指定用户的订单");
+		mntmNewMenuItem_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				SelectSpeUseOrderFrm ssuof = new SelectSpeUseOrderFrm();
+				ssuof.setVisible(true);
+				table111.add(ssuof);
+			}
+		});
+		
+		JMenuItem mntmNewMenuItem_14 = new JMenuItem("查看指定订单");
+		mntmNewMenuItem_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				SelectSpeOrderFrm ssof=new SelectSpeOrderFrm();
+				ssof.setVisible(true);
+				table111.add(ssof);
+			}
+		});
+		mntmNewMenuItem_14.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_14);
+		mntmNewMenuItem_13.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_2.add(mntmNewMenuItem_13);
+		
+		JMenu mnNewMenu_3 = new JMenu("管理充电宝");
+		mnNewMenu_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("查看所有充电宝");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				AllPBFrm apf=new AllPBFrm();
+				apf.setVisible(true);
+				table111.add(apf);
+			}
+		});
+		mntmNewMenuItem_8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_3.add(mntmNewMenuItem_8);
+		
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("查看指定充电宝");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				SelectSpePB ssp = new SelectSpePB();
+				ssp.setVisible(true);
+				table111.add(ssp);
+			}
+		});
+		mntmNewMenuItem_10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_3.add(mntmNewMenuItem_10);
+		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("查看指定站点充电宝");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				SelectSpeRegionPB ssrp = new SelectSpeRegionPB();
+				ssrp.setVisible(true);
+				table111.add(ssrp);
+			}
+		});
+		mntmNewMenuItem_12.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_3.add(mntmNewMenuItem_12);
+		
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("查看指定区域充电宝");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				SelectSpeRegionPB2 ssr2=new SelectSpeRegionPB2();
+				ssr2.setVisible(true);
+				table111.add(ssr2);
+			}
+		});
+		mntmNewMenuItem_9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_3.add(mntmNewMenuItem_9);
+		
+		JMenuItem mntmNewMenuItem_11 = new JMenuItem("增设充电宝");
+		mntmNewMenuItem_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table111.removeAll();
+				AddPBFrm apf=new AddPBFrm();
+				apf.setVisible(true);
+				table111.add(apf);
+			}
+		});
+		mntmNewMenuItem_11.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+		mnNewMenu_3.add(mntmNewMenuItem_11);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -166,15 +257,15 @@ public class AdminFrm extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(19)
-					.addComponent(table111, GroupLayout.PREFERRED_SIZE, 747, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(36, Short.MAX_VALUE))
+					.addComponent(table111, GroupLayout.PREFERRED_SIZE, 833, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(table111, GroupLayout.PREFERRED_SIZE, 448, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(38, Short.MAX_VALUE))
+					.addComponent(table111, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		this.setLocationRelativeTo(null);  // 居中显示
