@@ -177,7 +177,7 @@ public class userDaoImpl implements userDao {
     }
 
     @Override
-    public int changeTheMessage(String telephone, String name, String keyword){
+    public int changeTheMessage(String telephone, String name, String keyword){         //修改用户名和密码
         Connection conn=null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -211,7 +211,7 @@ public class userDaoImpl implements userDao {
     }
 
     @Override
-    public int returnMatch(String telephone){
+    public int returnMatch(String telephone){                                       //修改用户名和密码（判断）
         Connection conn=null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -240,7 +240,7 @@ public class userDaoImpl implements userDao {
     }
 
     @Override
-    public int top_Up(int money, String name, String key){
+    public int top_Up(int money, String name, String key){                              //用户充值
         Connection conn=null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -273,7 +273,7 @@ public class userDaoImpl implements userDao {
     }
 
     @Override
-    public int topThe_Up(String name, String key){
+    public int topThe_Up(String name, String key){                                     //用户充值（判断）
         Connection conn=null;
         PreparedStatement st = null;
         ResultSet rs = null;
