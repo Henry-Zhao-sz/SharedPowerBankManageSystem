@@ -14,4 +14,8 @@ public interface powerbankDao {
 
     int savePB(powerbank pb1);
 
+    int updateThePB();
+
+    List<powerbank> showTheUpdatePB();
+
 }
