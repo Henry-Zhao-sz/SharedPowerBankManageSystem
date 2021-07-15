@@ -49,6 +49,33 @@ public class userDaoImpl implements userDao {
     }
 
     @Override
+    public int queryByUid(int uid) {
+    	// TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try {
+            conn = JdbcUtil.getConnection(); //连接数据库
+            //写出sql语句，将可变变量，用？做替代，进行预编译
+            st = conn.prepareStatement("select * from user where `userID` = ?" );
+            st.setInt(1, uid);
+            //System.out.println(st.toString());
+            rs=st.executeQuery();
+            while(rs.next()) {
+                 match++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;//返回查询获得的用户对象
+    }
+    
+    
+    
+    @Override
     public int saveUser(user user1) {
         // TODO Auto-generated method stub
         Connection conn = null;
@@ -175,6 +202,133 @@ public class userDaoImpl implements userDao {
         }
         return affectedRow;
     }
+
+    @Override
+    public int changeTheMessage(String telephone, String name, String keyword){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userPhone=?");
+            st.setString(1,telephone);
+            rs=st.executeQuery();
+            if(rs.next()){
+                st=conn.prepareStatement("update user set userName=?, userPwd=? where userPhone=?");
+                st.setString(1,name);
+                st.setString(2,keyword);
+                st.setString(3,telephone);
+                match=st.executeUpdate();
+                conn.commit();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int returnMatch(String telephone){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userPhone=?");
+            st.setString(1,telephone);
+            rs=st.executeQuery();
+            while(rs.next()) {
+                match = rs.getRow();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int top_Up(double money, String name, String key){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userName=? and userPwd=?");
+            st.setString(1,name);
+            st.setString(2,key);
+            rs=st.executeQuery();
+            if(rs.next()){
+                st=conn.prepareStatement("update user set userBalance=userBalance+?");
+                st.setDouble(1,money);
+                match=st.executeUpdate();
+                conn.commit();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
+    @Override
+    public int topThe_Up(String name, String key){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int match=0;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from user where userName=? and userPwd=?");
+            st.setString(1,name);
+            st.setString(2,key);
+            rs=st.executeQuery();
+            while(rs.next()) {
+                match = rs.getRow();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return match;
+    }
+
 
 }
 

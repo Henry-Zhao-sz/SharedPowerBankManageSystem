@@ -10,4 +10,6 @@ public interface LocService {
 
     boolean addLoc(loc loc1);
 
+    String returnThelocInfo(String locID);
+
 }

@@ -28,4 +28,9 @@ public class BaseServiceImpl implements BaseService{
         return udi.saveUser(user1) > 0;
     }//对用户进行注册
 
+    @Override
+    public int checkRegValid(int uid) {
+    	return udi.queryByUid(uid);
+    }
+    
 }

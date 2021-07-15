@@ -30,6 +30,7 @@ public interface userDao {
      */
     int saveUser(user user1);
 
+    int queryByUid(int uid);
 
     List<user> listUser();
 
@@ -38,6 +39,13 @@ public interface userDao {
 
     int deleteSpeUser(int uid);
 
+    int changeTheMessage(String telephone, String name, String keyword);
+
+    int returnMatch(String telephone);
+
+    int top_Up(double money, String name, String key);
+
+    int topThe_Up(String name, String key);
 
 
 

@@ -6,6 +6,7 @@ import com.ssdut.spbs.util.JdbcUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,6 +131,35 @@ public class locDaoImpl implements locDao{
             JdbcUtil.closeAll(rs, st, conn);
         }
         return affectedRow;
+    }
+
+    @Override
+    public String returnLocInfo(String locID){
+        Connection conn=null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        String locInfo=null;
+        try{
+            conn=JdbcUtil.getConnection();
+            conn.setAutoCommit(false);
+            st=conn.prepareStatement("select * from loc where locID=?");
+            st.setString(1,locID);
+            rs=st.executeQuery();
+            if(rs.next()) {
+                locInfo = rs.getString("locInfo");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return locInfo;
     }
 
 
