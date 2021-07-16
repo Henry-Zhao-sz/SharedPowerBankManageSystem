@@ -6,12 +6,14 @@ import com.ssdut.spbs.entity.order;
 import com.ssdut.spbs.util.JdbcUtil;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class orderDaoImpl implements orderDao {
+
 
     @Override
     public order queryByOrderID(int orderID) {//根据订单号查询订单
@@ -23,7 +25,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select * from order where `orderID`=?" );
+            st = conn.prepareStatement("select * from spbs.order where `orderID`=?" );
             //将参数进行替换
             st.setInt(1, orderID);
             //System.out.println(st.toString());
@@ -34,7 +36,7 @@ public class orderDaoImpl implements orderDao {
                 order1.setOrderUserID(rs.getInt("orderUserID"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderPbID(rs.getInt("orderPbID"));
-                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderCreateTime(rs.getLong("orderCreateTime"));
                 order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
@@ -62,7 +64,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select * from order where `orderUserID=?" );
+            st = conn.prepareStatement("select * from spbs.order where `orderUserID=?" );
             //将参数进行替换
             st.setInt(1, orderUserID);
             //System.out.println(st.toString());
@@ -73,7 +75,7 @@ public class orderDaoImpl implements orderDao {
                 order1.setOrderUserID(rs.getInt("orderUserID"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderPbID(rs.getInt("orderPbID"));
-                order1.setOrderCreateTime(rs.getDate("orderCreateTime"));
+                order1.setOrderCreateTime(rs.getLong("orderCreateTime"));
                 order1.setOrderHasFinished(rs.getInt("orderHasFinished"));
                 order1.setOrderLendLocID(rs.getString("orderLendLocID"));
                 order1.setOrderRevertLocID(rs.getString("orderRevertLocID"));
@@ -89,7 +91,6 @@ public class orderDaoImpl implements orderDao {
         return list;//返回该用户的所有的订单的列表
     }
 
-
     @Override
     public double querySumCostByUserID(int orderUserID)//查询用户所花费总金额
     {
@@ -101,7 +102,7 @@ public class orderDaoImpl implements orderDao {
         try {
             conn = JdbcUtil.getConnection();//连接数据库
             //写出sql语句，将可变变量，用？做替代，进行预编译
-            st = conn.prepareStatement("select sum(orderCost) from order where `orderUserID=? group by orderUserID");
+            st = conn.prepareStatement("select sum(orderCost) from spbs.order where orderUserID=? group by orderUserID");
             //将参数进行替换
             st.setInt(1, orderUserID);
             //System.out.println(st.toString());
@@ -114,10 +115,64 @@ public class orderDaoImpl implements orderDao {
         } finally {
             JdbcUtil.closeAll(rs, st, conn);//关闭连接
         }
-        return Cost;//返回该用户的所有的订单的列表
+        return Cost;//返回该用户所有订单的总金额
     }
 
+
+    //创建订单
+    @Override
+    public int CreateOrder(order order1)
+    {
+        // TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int affectedRow = 0;
+        try {
+            conn = JdbcUtil.getConnection();
+            st = conn.prepareStatement("insert into spbs.order values(?,?,?,?,?,0,null,null,null)");
+            st.setInt(1,order1.getOrderID());
+            st.setInt(2,order1.getOrderUserID());
+            st.setString(3,order1.getOrderLendLocID());
+            st.setInt(4,order1.getOrderPbID());
+            st.setLong(5,  order1.getOrderCreateTime());
+            //System.out.println(st.toString());
+			/*st.setInt(3, user.getState());
+			st.setInt(4, user.getFlag());*/
+            affectedRow = st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return affectedRow;
     }
+
+
+    //获取订单编号
+    @Override
+    public int findOrderNum()
+    {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        int max = -1;
+        try {
+            conn = JdbcUtil.getConnection();
+            st = conn.prepareStatement("select max(orderID) from spbs.order" );
+            rs =st.executeQuery();
+            while(rs.next())
+            {
+                max= rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return max;
+    }
+}
 
 
 

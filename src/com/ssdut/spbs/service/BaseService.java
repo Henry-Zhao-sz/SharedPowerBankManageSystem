@@ -18,5 +18,7 @@ public interface BaseService {
     boolean register(user user1);
 
     admin checkAdminLogin(String adname, String adPwd);
+    
+    int checkRegValid(int uid);
 
 }
