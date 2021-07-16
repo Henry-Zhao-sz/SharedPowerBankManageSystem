@@ -34,4 +34,16 @@ public class PowerBankServiceImpl implements PowerBankService {
         return pbls.savePB(pb1);
     }
 
+    @Override
+    public int updatePB(){
+        int match=pbi.updateThePB();
+        return match;
+    }
+
+    @Override
+    public List<powerbank> showUpdatePB(){
+        List<powerbank> list=pbi.showTheUpdatePB();
+        return list;
+    }
+
 }

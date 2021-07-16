@@ -111,4 +111,34 @@ public class user {
     public void setUserDiscount(double userDiscount) {
         this.userDiscount = userDiscount;
     }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

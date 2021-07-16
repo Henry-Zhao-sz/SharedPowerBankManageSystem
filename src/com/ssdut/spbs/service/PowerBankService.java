@@ -11,4 +11,8 @@ public interface PowerBankService {
 
     int addPB(powerbank pb1);
 
+    int updatePB();
+
+    List<powerbank> showUpdatePB();
+
 }

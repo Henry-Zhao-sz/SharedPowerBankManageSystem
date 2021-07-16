@@ -163,4 +163,66 @@ public class locDaoImpl implements locDao{
     }
 
 
+
+    @Override
+    public List<powerbank> showPowerBank(String locID)
+    {
+        // TODO Auto-generated method stub
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List <powerbank> list=new ArrayList<powerbank>();//创建充电宝列表
+        powerbank pw=null;
+        try {
+            conn = JdbcUtil.getConnection();
+            //st = conn.prepareStatement("select * from topic");
+            st=conn.prepareStatement("select * from powerbank where pbLoc like ?");
+            st.setString(1,locID);//查询对应位置的所有充电宝
+            rs=st.executeQuery();
+            while(rs.next()) {
+                pw=new powerbank();
+                pw.setPbID(rs.getInt("pbID"));
+                pw.setBlState(rs.getInt("blState"));
+                pw.setRestPower(rs.getInt("restPower"));
+                pw.setUseTimeLong(rs.getTime("useTimeLong"));
+                pw.setPbLoc(rs.getString("pbLoc"));
+                pw.setHealthState(rs.getDouble("HealthState"));
+                list.add(pw);//列表加入充电宝
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return list;//返回列表
+    }
+
+
+    //订单借出后，更新位置信息
+    public boolean updateLocInfo(String lendLocID)
+    {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        powerbank pw=null;
+        try {
+            conn = JdbcUtil.getConnection();
+            //st = conn.prepareStatement("select * from topic");
+            //判断是否能借出
+            st=conn.prepareStatement("update loc set availNum=availNum-1,lendTime=lendTime+1 where locID=?");
+            st.setString(1,lendLocID);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return true;//修改成功
+    }
+
+
+
+
+
 }

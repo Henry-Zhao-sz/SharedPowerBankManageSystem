@@ -10,13 +10,9 @@ public interface UserService {
     user showSpeUser(int uid);
 
     int removeSpeUser(int uid);
+    //创建订单
+    boolean createOrder(int uid, String lendLocID, int pdID,long orderCreateTime);
+    //完成订单
 
-    int changeMessage(String telephone, String name, String keyword);
-
-    int returnTheMatch(String telephone);
-
-    int topUp(double money, String name, String key);
-
-    int topTheUp(String name, String key);
 
 }

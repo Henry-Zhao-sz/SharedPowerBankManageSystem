@@ -158,13 +158,13 @@ public class Menu {
     public static void showPBManager(){
         PowerBankServiceImpl pbsi = new PowerBankServiceImpl();
         LocServiceImpl lsi=new LocServiceImpl();
-        System.out.println("1.查询所有充电宝 2.查找指定区域充电宝 3.查找指定编号充电宝 4.增设充电宝 5.返回管理员菜单");
+        System.out.println("1.查询所有充电宝 2.查找指定区域充电宝 3.查找指定编号充电宝 4.增设充电宝 5.检测充电宝健康值并更新 6.返回管理员菜单");
         while (true) {
             try {
                 cursor = sc.nextInt();
                 break;
             } catch (Exception e) {
-                System.out.println("请重新输入正确选项：1.查询所有充电宝 2.查找指定区域充电宝 3.查找指定编号充电宝 4.增设充电宝 5.返回管理员菜单");
+                System.out.println("请重新输入正确选项：1.查询所有充电宝 2.查找指定区域充电宝 3.查找指定编号充电宝 4.增设充电宝 5.检测充电宝健康值并更新 6.返回管理员菜单");
                 sc = new Scanner(System.in);
             }
         }
@@ -217,6 +217,22 @@ public class Menu {
                 break;
 
             case 5:
+                List<powerbank> list2 = pbsi.showUpdatePB();
+                int updatepb=pbsi.updatePB();
+                if(updatepb==0){
+                    System.out.println("目前充电宝健康值均良好");
+                    showPBManager();
+                }
+                else{
+                    System.out.println("有"+updatepb+"个充电宝健康值偏低，现已更新为新充电宝\n被更新的充电宝信息如下：");
+                    System.out.println("充电宝编号\t"+"充电宝状态\t"+"剩余电量\t  "+"已使用时长\t"+"所属区域\t"+"充电宝健康值");
+                    for (powerbank pb4:list2) {
+                        System.out.println("  "+pb4.getPbID()+"\t\t   "+pb4.getBlState()+"\t\t "+pb4.getRestPower()+"\t  "+pb4.getUseTimeLong()+"\t "+pb4.getPbLoc()+"\t    "+pb4.getHealthState());
+                    }
+                    showPBManager();
+                }
+
+            case 6:
                 showAdminMenu();
                 break;
             default:
