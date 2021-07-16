@@ -138,4 +138,28 @@ public class powerbankDaoImpl implements powerbankDao {
         return affectedRow;
     }
 
+
+
+    //更新充电宝信息
+    public boolean updatePowerbankInfoBorrow(int pdID)
+    {
+        Connection conn = null;
+        PreparedStatement st = null;
+        PreparedStatement st1=null;
+        ResultSet rs = null;
+        try {
+            conn = JdbcUtil.getConnection();
+            st = conn.prepareStatement("update powerbank set blState=0 where pbID=?");
+            st.setInt(1,pdID);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return true;
+    }
+
+
+
 }

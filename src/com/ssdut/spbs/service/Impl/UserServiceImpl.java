@@ -36,6 +36,8 @@ public class UserServiceImpl implements UserService {
         user user1 = udi.listSpeUser(uid);//获取当前用户全部信息
         order order1 = new order();//创建订单对象
         orderDaoImpl odi = new orderDaoImpl();//订单管理
+        locDaoImpl ldi = new locDaoImpl();//位置管理
+        powerbankDaoImpl pdi = new powerbankDaoImpl();//充电宝类
         //设置订单参数
         order1.setOrderID(odi.findOrderNum()+1);//设置订单编号
         order1.setOrderUserID(user1.getUserID());//设置使用者ID
@@ -43,10 +45,11 @@ public class UserServiceImpl implements UserService {
         order1.setOrderPbID(pdID);//订单使用充电宝ID
         order1.setOrderCreateTime(orderCreateTime);//订单创建时间
 
-        if(odi.CreateOrder(order1)==1)
+        if(odi.CreateOrder(order1)==1 && ldi.updateLocInfo(lendLocID) && pdi.updatePowerbankInfoBorrow(pdID) && udi.updateTimes(uid,lendLocID))
         {
             //创建订单成功
             System.out.println("创建订单成功");
+
             return  true;
         }
         else

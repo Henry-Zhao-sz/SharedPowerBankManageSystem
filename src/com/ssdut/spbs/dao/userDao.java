@@ -39,6 +39,9 @@ public interface userDao {
 
     int deleteSpeUser(int uid);
 
+    //更新用户数据库中的借用次数
+    boolean updateTimes(int uid,String loc);
+
     int changeTheMessage(String telephone, String name, String keyword);
 
     int returnMatch(String telephone);

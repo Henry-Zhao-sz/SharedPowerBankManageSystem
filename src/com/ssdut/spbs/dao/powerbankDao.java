@@ -14,4 +14,8 @@ public interface powerbankDao {
 
     int savePB(powerbank pb1);
 
+
+    //借出时更新充电宝信息
+    boolean updatePowerbankInfoBorrow(int pdID);
+
 }

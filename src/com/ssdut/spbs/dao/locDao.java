@@ -23,4 +23,8 @@ public interface locDao {
 
     List<powerbank> showPowerBank(String locID);
 
+
+    //订单借出后，更新充电宝
+    boolean updateLocInfo(String lendLocID);
+
 }

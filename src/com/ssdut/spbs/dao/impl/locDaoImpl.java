@@ -198,6 +198,30 @@ public class locDaoImpl implements locDao{
     }
 
 
+    //订单借出后，更新位置信息
+    public boolean updateLocInfo(String lendLocID)
+    {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        powerbank pw=null;
+        try {
+            conn = JdbcUtil.getConnection();
+            //st = conn.prepareStatement("select * from topic");
+            //判断是否能借出
+            st=conn.prepareStatement("update loc set availNum=availNum-1,lendTime=lendTime+1 where locID=?");
+            st.setString(1,lendLocID);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            JdbcUtil.closeAll(rs, st, conn);
+        }
+        return true;//修改成功
+    }
+
+
 
 
 

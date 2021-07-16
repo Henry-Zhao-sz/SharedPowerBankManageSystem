@@ -166,7 +166,7 @@ public class Menu {
                 usi.createOrder(id,l,pid,date);
         }
 
-    }3
+    }
 
 
     public static void showlocManager(){
